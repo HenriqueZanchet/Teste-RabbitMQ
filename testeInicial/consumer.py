@@ -9,11 +9,11 @@ def on_message_received(ch, method, properties, body):
     ch.basic_ack(delivey_tag=method.delivery_tag)
     print("Término do processamento da mensagem")
 
-connection_parameters = pika.ConnectionParameters('localhost:15672')
+connection_parameters = pika.ConnectionParameters('localhost')
 
-coneection = pika.BlockingConnection(connection_parameters)
+connection = pika.BlockingConnection(connection_parameters)
 
-channel = connection.chanel()
+channel = connection.channel()
 
 channel.queue_declare(queue='letterbox')
 

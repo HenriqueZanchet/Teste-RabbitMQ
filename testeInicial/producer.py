@@ -2,11 +2,11 @@ import pika
 import time 
 import random
 
-connection_parameters = pika.ConnectionParameters('localhost:15672')
+connection_parameters = pika.ConnectionParameters('localhost')
 
-coneection = pika.BlockingConnection(connection_parameters)
+connection = pika.BlockingConnection(connection_parameters)
 
-channel = connection.chanel()
+channel = connection.channel()
 
 channel.queue_declare(queue='letterbox')
 
@@ -21,4 +21,4 @@ while(True):
 
     print(f"Mensagem enviada: {message}")
 
-    mesageId+=1
+    messageId+=1
