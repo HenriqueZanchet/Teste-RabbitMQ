@@ -1,3 +1,8 @@
+# estabelece um canal de comunicação com o rabbitmq
+connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
+channel = connection.channel()
+
+
 # declara novamente a fila, caso ela não tenha sido criada antes (o send.py pode rodar depois), ele cria, 
 # se esta fila já existir, ele não cria outra
 channel.queue_declare(queue='hello')
