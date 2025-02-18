@@ -8,7 +8,11 @@ channel = connection.channel()
 message = ' '.join(sys.argv[1:]) or "Hello World"
 
 channel.basic_publish(exchange='', 
-                        routing_key='hello',
-                        body=message)
+                      routing_key='task_queue',
+                      body=message,
+                      # salva as mensagens para que elas não sejam perdidas
+                      properties=pika.BasicProperties(
+                          delivery_mode = pika.DeliveryMode.Persistent
+                      ))
 print(f" [X] Sent {message}")
 
