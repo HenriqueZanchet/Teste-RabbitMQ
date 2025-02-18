@@ -1,3 +1,5 @@
+import pika
+
 # estabelece um canal de comunicação com o rabbitmq
 connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
 channel = connection.channel()
