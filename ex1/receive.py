@@ -19,3 +19,5 @@ channel.basic_consume(queue='hello',
                         auto_ack=True,
                         on_message_callback=callback)
 
+channel.start_consuming()
+
