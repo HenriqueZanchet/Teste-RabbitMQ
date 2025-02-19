@@ -4,7 +4,6 @@ import time, pika
 connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
 channel = connection.channel()
 
-
 # declara novamente a fila, caso ela não tenha sido criada antes (o send.py pode rodar depois), ele cria, 
 # se esta fila já existir, ele não cria outra
 channel.queue_declare(queue='task_queue', durable=True)
@@ -17,6 +16,7 @@ def callback(ch, method, properties, body):
         print(f" [X] Done")
         ch.basic_ack(delivery_tag=method.delivery_tag)
 
+# a linha seguinte faz com que a mensagem seja distruibuida de forma a considerar as ocupações de consumidor
 channel.basic_qos(prefetch_count=1)
 channel.basic_consume(queue='task_queue', on_message_callback=callback)
     
