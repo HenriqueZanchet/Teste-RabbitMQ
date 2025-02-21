@@ -16,7 +16,7 @@ message = ' '.join(sys.argv[1:]) or "info: Hello World"
 # o delivery_mode persistente faz com que a mensagem não se perca caso não consiga fazer o envio ou haja algum problema
 channel.basic_publish(exchange='logs',
                       routing_key='',
-                      body=message,)
+                      body=message)
 print(f" [X] Sent {message}")
 connection.close()
 
